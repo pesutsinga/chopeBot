@@ -19,26 +19,28 @@ Bot chope kursi LWN (Booking)
       # FIXME: We sometimes get an undefined index in this array.
       # BUG: If the user inputs "Easter" we always output "Egg", even if they wanted a "Bunny"
 
-## Style Guide (PEP-8)
-- Please Baca Style Guidenya
+## Style Guide (flake8)
+- Please install flake8 linter
 - Sebelum kita semua lelah antara satu sama lain
 - Kebiasaan CP (variable 3 karakter) mohon bertobat
 - Gausah strict" amat but as long as kita sama" nyaman
 
 ### TL;DR
 - variablesLikeThis
-- CONSTANT_LIKE_THIS
-- GLOBAL_LIKE_THIS
+- ClassLikeThis
+- GLOBAL_AND_CONST_LIKE_THIS
 - function_like_this
 - 4 Spaces (NOT TABS)
 - Keep it short <78 chars / line
 - Op Operand Notation
+
 ```python
-income = (gross_wages
-        + taxable_interest
-        + (dividends - qualified_dividends)
-        - ira_deduction
-        - student_loan_interest)
+income = (
+    gross_wages
+    + taxable_interest
+    + (dividends - qualified_dividends)
+    - ira_deduction
+    - student_loan_interest)
 ```
 - Separate lines for import
 ```python
