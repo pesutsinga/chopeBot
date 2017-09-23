@@ -33,8 +33,8 @@ def scrape_pc():
             iframe.find_by_id('pnlInsLoc3').click()
             iframe.find_by_id('pnlInsPcGrp0').click()
         for value in [31, 26, 7, 27]:
-            url = 'https://ntupcb.ntu.edu.sg/fbscbs/PCBooking/'
-            + 'SeatingParentForm.aspx?LocId=2&PcGrpId=' + str(value)
+            url = 'https://ntupcb.ntu.edu.sg/fbscbs/PCBooking/\
+                SeatingParentForm.aspx?LocId=2&PcGrpId=' + str(value)
             chrome.visit(url)
             with chrome.get_iframe('frmSeating') as iframe:
                 tables = iframe.find_by_css('.ItemStyleProp')

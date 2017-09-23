@@ -26,6 +26,7 @@ Bot chope kursi LWN (Booking)
 - Gausah strict" amat but as long as kita sama" nyaman
 
 ### TL;DR
+- ClassLikeThis
 - variablesLikeThis
 - CONSTANT_LIKE_THIS
 - GLOBAL_LIKE_THIS
