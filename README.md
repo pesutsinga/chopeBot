@@ -33,7 +33,6 @@ Bot chope kursi LWN (Booking)
 - 4 Spaces (NOT TABS)
 - Keep it short <78 chars / line
 - Op Operand Notation
-
 ```python
 income = (
     gross_wages
