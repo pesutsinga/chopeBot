@@ -4,12 +4,13 @@ https://trello.com/b/S2FfT0F1
 Bot chope kursi LWN (Booking)
 
 ## Dependencies
+- python 3.5.x
 - python-telegram-bot (Python Telegram Wrapper -pretty sure)
 - splinter (browser automation)
 
-# Comment Convention 
+# Comment Convention
 - pake beginian kalo niat (?)
-    
+
       # NOTE: This is here because sometimes an intermittent issue appears.
       # OPTIMIZE: This could be reworked to not do a O(N2) lookup.
       # TODO: from John: Add a check here to ensure these are always strings.
@@ -19,7 +20,7 @@ Bot chope kursi LWN (Booking)
       # BUG: If the user inputs "Easter" we always output "Egg", even if they wanted a "Bunny"
 
 ## Style Guide (PEP-8)
-- Please Baca Style Guidenya 
+- Please Baca Style Guidenya
 - Sebelum kita semua lelah antara satu sama lain
 - Kebiasaan CP (variable 3 karakter) mohon bertobat
 - Gausah strict" amat but as long as kita sama" nyaman
@@ -29,7 +30,7 @@ Bot chope kursi LWN (Booking)
 - CONSTANT_LIKE_THIS
 - GLOBAL_LIKE_THIS
 - function_like_this
-- 4 Spaces (NOT TABS) 
+- 4 Spaces (NOT TABS)
 - Keep it short <78 chars / line
 - Op Operand Notation
 ```python
