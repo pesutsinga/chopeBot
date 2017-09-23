@@ -1,15 +1,17 @@
-# Library Booker 
+# Library Booker
 # pesutsinga 2017
+from splinter import Browser
 
 USERNAME = ''
 PASSWORD = ''
-
-#either 'Facility' or 'PC'
+# either 'Facility' or 'PC'
 BOOKING_MODE = 'PC'
-from splinter import Browser
 chrome = Browser('chrome')
+
+
 def timeDelay(time):
     chrome.is_element_present_by_name('!@#$%^&*())(*&^%$#@!', wait_time=time)
+
 
 def login_ntupcb():
 
@@ -17,11 +19,11 @@ def login_ntupcb():
     chrome.visit(url)
     chrome.fill('Username', USERNAME)
     chrome.fill('Password', PASSWORD)
- 
-   # Find and click the 'search' button
+    # Find and click the 'search' button
     button = chrome.find_by_tag('button')
     # Interact with elements
     button.click()
+
 
 def scrape_pc():
     if BOOKING_MODE == 'PC':
@@ -31,7 +33,8 @@ def scrape_pc():
             iframe.find_by_id('pnlInsLoc3').click()
             iframe.find_by_id('pnlInsPcGrp0').click()
         for value in [31, 26, 7, 27]:
-            url = 'https://ntupcb.ntu.edu.sg/fbscbs/PCBooking/SeatingParentForm.aspx?LocId=2&PcGrpId=' + str(value)
+            url = 'https://ntupcb.ntu.edu.sg/fbscbs/PCBooking/'
+            + 'SeatingParentForm.aspx?LocId=2&PcGrpId=' + str(value)
             chrome.visit(url)
             with chrome.get_iframe('frmSeating') as iframe:
                 tables = iframe.find_by_css('.ItemStyleProp')
@@ -40,6 +43,7 @@ def scrape_pc():
                         if table.text != '':
                             print(">>>")
                             print(table.text)
+
 
 def main():
     login_ntupcb()
