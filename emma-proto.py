@@ -7,7 +7,6 @@ db = pymysql.connect("bebong.id", "u7728567", "ikehik3h", "u7728567_chopebot")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
-
 # CODE TESTING : insert data according to stored user input from shell
 # NEXT : prompt id, uname & pass, facilities priority rank from telegram chat
 TelegramID = input('What is your telegram ID? ')
