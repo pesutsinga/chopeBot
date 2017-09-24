@@ -1,4 +1,5 @@
 import pymysql
+from util import VPrinter
 
 
 class MySQLConnector:
@@ -22,25 +23,26 @@ class MySQLConnector:
         pass
 
     def insert(self, table, values):
+        v = VPrinter()
         """
-        Documentation:
+        docstring
         table: string
         values: list of tuples
         """
         cols = ', '.join([('`' + elm[0] + '`') for elm in values])
-        print(cols)
+        v.vprint(cols)
 
         types = ', '.join([("%" + elm[1]) for elm in values])
-        print(types)
+        v.vprint(types)
 
         statement = (
             "INSERT INTO " + table
             + " (" + cols + ") "
             + "VALUES (" + types + ")")
-        print(statement)
+        v.vprint(statement)
 
         args = tuple([elm[2] for elm in values])
-        print(args)
+        v.vprint(args)
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(statement, args)
@@ -48,5 +50,5 @@ class MySQLConnector:
         finally:
             pass
 
-    def select(self, table, ext='', **columns):
+    def select(self, table, columns):
         pass

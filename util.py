@@ -1,5 +1,5 @@
-class vprinter:
-    def __init__(self, verbose):
+class VPrinter:
+    def __init__(self, verbose=True):
         self.verbose = verbose
 
     def vprint(self, obj):
