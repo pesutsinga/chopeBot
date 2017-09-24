@@ -1,7 +1,7 @@
 from pprint import pprint
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackQueryHandler
 from time import gmtime, strftime
 import chopeDB
 import datetime
@@ -10,6 +10,7 @@ import logging
 FIRST_ONLINE = ''
 USER_STATUS = {}
 TOKEN = '377140861:AAEiMIj-VOwB68HcftvMILjr5wc6LJJml6g'
+VERBOSE = False
 
 
 def assert_error(bot, update):
@@ -28,39 +29,44 @@ def ask_username():
     pass
 
 
-def abc():
-    print("AKLS")
+def vprint(obj):
+    if VERBOSE:
+        print(obj)
 
 
-def start(bot, update, args):
+def cmd_start(bot, update, args):
+    VERBOSE = args == 'v'
     chatID = update.message.chat_id
     firstName = update.message.from_user.first_name
     username = update.message.from_user.username
-    if username != "None":
-        bot.send_message(chat_id=chatID, text="Hi " + firstName)
-        from emoji import emojize
-        button_list = [
-            [InlineKeyboardButton("col1", callback_data="abc"),
-             InlineKeyboardButton("col2", callback_data="def")],
-            [InlineKeyboardButton("row 2", callback_data="ghi")]
-        ]
-        reply_markup = InlineKeyboardMarkup(button_list)
-        bot.send_message(
-            chat_id=chatID,
-            text="A two-column menu",
-            reply_markup=reply_markup)
-    else:
+
+    vprint("username check")
+    if username == "None":
+        vprint("FAIL")
         assert_no_username(bot, update)
+        return
+    vprint("PASS")
+
+    vprint("login check")
+    if not can_login():
+        vprint("FAIL")
+        push_user()
+    vprint("PASS")
+
+    bot.send_message(chat_id=chatID, text="Hi " + firstName)
+    if not verify_credential(username, chatID)
 
 
 # Depressed on the def thingy
-# def clbk(bot, update):
-#     print(update)
+def callback_general(bot, update):
+    print(update)
 
 
-def init_handler(dispatcher):
-    cmd_start = CommandHandler('start', start, pass_args=True)
-    dispatcher.add_handler(cmd_start)
+def handler_init(dispatcher):
+    cmdStart = CommandHandler('start', cmd_start, pass_args=True)
+    dispatcher.add_handler(cmdStart)
+    callbackGeneral = CallbackQueryHandler(callback_general)
+    dispatcher.add_handler(callbackGeneral)
     # MEMO: Belom bisa figure out the how to
     # callback_handler = MessageHandler(callback)
     # dispatcher.add_handler(callback_handler, clbk)
@@ -68,15 +74,16 @@ def init_handler(dispatcher):
 
 def main():
     FIRST_ONLINE = strftime("%d %b %Y %H:%M:%S", gmtime())
-    loggingFormat = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(format=loggingFormat, level=logging.INFO)
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO)
 
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
-    init_handler(dispatcher)
-    print("BOT Finishing Init")
+    handler_init(dispatcher)
+    print("deploying bot...")
     updater.start_polling()
-    print("Bot Properly Started")
+    print("deployed")
 
 if __name__ == "__main__":
     main()
