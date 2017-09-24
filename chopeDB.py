@@ -2,11 +2,9 @@ import pymysql
 
 
 class MySQLConnector:
-    table = ''
-
     def __init__(self):
         self.table = ''
-        self.db = pymysql.connect(
+        self.connection = pymysql.connect(
             host='bebong.id',
             user='u7728567_chope',
             password='bunuakumz578%&*',
@@ -14,17 +12,41 @@ class MySQLConnector:
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor)
 
-    def set_table(tablename):
-        self.table = str(tablename)
+    def close(self):
+        self.connection.close()
 
-    def update(**conditions, **values):
+    def update(self, table, conditions):
         pass
 
-    def delete(**condition):
+    def delete(self, table, conditions):
         pass
 
-    def insert(**values):
-        pass
+    def insert(self, table, values):
+        """
+        Documentation:
+        table: string
+        values: list of tuples
+        """
+        cols = ', '.join([('`' + elm[0] + '`') for elm in values])
+        print(cols)
 
-    def select(**columns, **conditions, ext=''):
+        types = ', '.join([("%" + elm[1]) for elm in values])
+        print(types)
+
+        statement = (
+            "INSERT INTO " + table
+            + " (" + cols + ") "
+            + "VALUES (" + types + ")")
+        print(statement)
+
+        args = tuple([elm[2] for elm in values])
+        print(args)
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(statement, args)
+            self.connection.commit()
+        finally:
+            pass
+
+    def select(self, table, ext='', **columns):
         pass
