@@ -2,7 +2,7 @@ from chopeDB import MySQLConnector
 
 
 def main():
-    db = MySQLConnector()
+    db = MySQLConnector('LIBCHOP')
     args = []
     args.append(("TELEGRAMID", 's', 'lasidf.2830'))
     args.append(("USERNAME", 's', 'HOBO'))
