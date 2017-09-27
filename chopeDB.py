@@ -13,7 +13,7 @@ class MySQLConnector:
         coba liat trial-mysql.py kalo mo coba" 
         makasih :)
     """
-    def __init__(self, database):
+    def __init__(self, database='u7728567_chopebot'):
         self.connection = pymysql.connect(
             host='bebong.id',
             user='u7728567_chope',
