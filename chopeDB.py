@@ -3,8 +3,17 @@ from util import VPrinter
 
 
 class MySQLConnector:
+    """
+        jadi kalo mau connect ke db tinggal MySQLConnector(namadb)
+        terus di assign ke variable mis:
+        db = MySQLConnector("apalah")
+        
+        terus pas misal mau insert tinggal
+        db.insert('tablename', arguments)
+        coba liat trial-mysql.py kalo mo coba" 
+        makasih :)
+    """
     def __init__(self, database):
-        self.table = ''
         self.connection = pymysql.connect(
             host='bebong.id',
             user='u7728567_chope',
